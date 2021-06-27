@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Noob Ninjas inbox </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  
+    <link rel="icon" type="image/png" href="/images/NB.png">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<%if(locals.user){%>
+
+   <div class="container">
+     <!-- Modal -->
+     <div id="myModal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+             <!-- Modal content-->
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">
+                         Compose Mail
+                     </h4>
+                 </div>
+                 <div class="modal-body">
+                     <form role="form" method="post" action="/users/create-mail" id="reused_form" >
+                         <p> Enter the mail addresses in cc separated with commas.</p>
+                         <div class="form-group">
+                          <label for="to"> To:</label>
+                          <input type="email" class="form-control" id="to" name="to" required maxlength="50">
+                        </div>
+                         <div class="form-group">
+                             <label for="CC"> Cc:</label>
+                             <input type="text" class="form-control" id="CC" name="cc" >
+                         </div>
+
+                         <div class="form-group">
+                            <label for="subject"> Subject:</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required >
+                        </div>
+
+                         <div class="form-check">oo
+                          <input class="form-check-input" type="radio" name="time" value="30" id="flexRadioDefault1">
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            30 seconds scheduling
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="time" value="7"  id="flexRadioDefault2" checked>
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            weekly scheduling
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="time" value="1"  id="flexRadioDefault2" checked>
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            monthly scheduling
+                          </label>
+                        </div>
+
+                         <div class="form-group">
+                             <label for="name"> Body:</label>
+                             <textarea class="form-control" type="textarea" name="body" id="message" placeholder="Your Message Here" maxlength="6000" rows="7"></textarea>
+                         </div>
+                         <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Send It! &rarr;</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+
+
+
+
+
+
+ 
+<div class="container bootstrap snippets bootdey">
+<hr>
+<div class="row">
+   <div class="col-sm-3 col-md-2">
+       <button type="button" class="btn btn-info btn-lg turned-button" data-toggle="modal" data-target="#myModal">            <i class="glyphicon glyphicon-edit"></i> 
+         Compose</button>
+       <hr>
+       <ul class="nav nav-pills nav-stacked">
+           <li class="active"><a href="#"><span class="badge bg-danger pull-right"><%=mail.length%></span> Inbox </a>
+           </li>
+       </ul>
+   </div>
+   <div class="col-sm-9 col-md-10">
+       <!-- Nav tabs -->
+       <ul class="nav nav-tabs">
+           <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+           </span>Scheduled</a></li>
+           <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
+               Bin</a></li>
+       </ul>
+
+      
+       <div class="tab-content">
+
+            <!-- Scheduled mails section -->
+           <div class="tab-pane fade in active" id="home">
+          
+                <% for(i of mail) { %>
+                    <div class="list-group">
+                        <li  class="list-group-item">
+                        <a href="/users/mail/<%=i._id%>" style="text-decoration: none;">
+                            <span class="name label label-info" style="min-width: 120px; display: inline-block;">
+                                <%=i.to%>
+                            </span> 
+                            <span class="">
+                                <%=i.subject%>
+                            </span>
+                            <span class="text-muted" style="font-size: 11px;">-Click here for details</span>
+                        </a>
+                        <span class="badge"><%=i.createdAt%>   </span>
+
+                        <a href="/users/mail/destroy/<%=i._id%>"><span class="pull-right"><span class="glyphicon glyphicon-trash"></span> </span></a>
+                        </li>
+                    </div>
+                <%}%>
+
+           </div>
+
+           <!-- history tab -->
+           <div class="tab-pane fade in" id="profile">
+
+            <% for(i of deletedmail) { %>
+                <div class="list-group">
+                    <li  class="list-group-item">
+                    <a href="/users/mail/<%=i._id%>" style="text-decoration: none;">
+                        <span class="name label label-info" style="min-width: 120px; display: inline-block;">
+                            <%=i.to%>
+                        </span> 
+                        <span class="">
+                            <%=i.subject%>
+                        </span>
+                        <span class="text-muted" style="font-size: 11px;">-Click here for details</span>
+                    </a>
+                    <span class="badge"><%=i.createdAt%>   </span>
+
+                    <span class="pull-right"><span class="glyphicon glyphicon-ban-circle"></span> </span>
+                    </li>
+                </div>
+            <%}%>
+       </div>
+   </div>
+</div>
+</div>
+
+
+<%}%>
+
+<style type="text/css">
+
+body{ margin-top:50px; background-repeat: no-repeat;}
+.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
+.tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
+.tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
+.tab-pane .list-group .checkbox { display: inline-block;margin: 0px; }
+.tab-pane .list-group input[type="checkbox"]{ margin-top: 2px; }
+.tab-pane .list-group .glyphicon { margin-right:5px; }
+.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
+a.list-group-item.read { color: #222;background-color: #F3F3F3; }
+hr { margin-top: 5px;margin-bottom: 10px; }
+.nav-pills>li>a {padding: 5px 10px;}
+
+.ad { padding: 5px;background: #F5F5F5;color: #222;font-size: 80%;border: 1px solid #E5E5E5; }
+.ad a.title {color: #15C;text-decoration: none;font-weight: bold;font-size: 110%;}
+.ad a.url {color: #093;text-decoration: none;}
+</style>
+
+<script type="text/javascript">
+var list = document.getElementsByClassName("badge");
+for(var i of list){
+
+i.innerHTML=(i.innerHTML).split("GMT")[0];
+console.log(i.innerHTML);
+}
+</script>
+</body>
+</html>

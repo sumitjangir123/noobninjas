@@ -1,0 +1,45 @@
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="<%=assetPath("css/resetPass.css")%>">
+<body>
+	<div class="container">
+		<div class="img">
+			<img src="<%=assetPath("images/forgotPass.svg")%>">
+		</div>
+		<div class="login-content">
+			<form method="POST" action="/users/set-new-password" autocomplete="off">
+				<h2 class="title" style="color: #683aa4;">Reset Password</h2>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+                        <!-- <i class="fas fa-lock"></i> -->
+                        <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                           <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                         </svg>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Choose a password</h5>
+           		    	<input type="password" class="input" name="password">
+            	   </div>
+               </div>
+               <input type="hidden" name="token" value="<%=token%>">
+               <div class="input-div pass">
+                  <div class="i"> 
+                     <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                     </svg>
+                  </div>
+                  <div class="div">
+                     <h5>Confirm password</h5>
+                     <input type="password" class="input" name="confirm_password">
+                  </div>
+               </div>
+               <button type="submit" class="btn">Reset</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="<%=assetPath("js/signin.js")%>" > </script>
+</body>
+</html>

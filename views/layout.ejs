@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<script data-ad-client="ca-pub-5048146254080014" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta name="google-site-verification" content="oXB3zAeTY2Xj5v0XfGwOp_Vl26p09a4KeDM-vjhB9yI" />
+  <title><%=title%></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link rel="icon" type="image/x-icon" href="<%=assetPath("images/NB.png")%>">
+  
+    <configuration>
+        <appSettings>
+          <add key="webPages:Version" value="3.0.0"/>
+          <add key="webpages:Enabled" value="true"/>
+        </appSettings>
+        <system.web>
+          <compilation debug="true" targetFramework="4.0"/>
+        </system.web>
+        <runtime>
+          <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+          </assemblyBinding>
+        </runtime>
+        <add key="webpages:Enabled" value="true" />
+      </configuration>
+      
+  
+
+    <link href="<%=assetPath("css/mdbootstrap.css")%>" rel="stylesheet">
+    <link rel="stylesheet" href='<%=assetPath("css/noty.css")%>'>
+    <script src='<%=assetPath("js/noty.js")%>'></script>
+    <script src="<%=assetPath("js/jquery.js")%>"></script>
+     <script src="https://kit.fontawesome.com/26d4a64054.js" crossorigin="anonymous"></script>
+
+    <%-style%>
+</head>
+
+<main id="layout-main">
+    <%-body%>
+</main>
+
+<%-script%>
+
+<script>
+        <% if (flash.success && flash.success.length > 0) {%>
+        new Noty({
+            theme: 'metroui',
+            text: '<%=flash.success%>',
+            type: 'success',
+            layout: 'topRight',
+            timeout: 4000
+        }).show();
+        <%}%>
+
+        <% if (flash.error && flash.error.length > 0) {%>
+        new Noty({
+            theme: 'relax',
+            text: '<%=flash.error%>',
+            type: 'error',
+            layout: 'topRight',
+            timeout: 4000
+        }).show();
+        <%}%>
+
+
+</script>
+
+</html>

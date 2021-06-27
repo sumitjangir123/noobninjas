@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Noob Ninjas inbox </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/NB.png">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <style>
+       @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+body::-webkit-scrollbar {
+  width: 0.8em; }
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
+
+body::-webkit-scrollbar-thumb {
+  background-color: #683aa4;
+  outline: 1px solid slategrey; }
+
+.spinner-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #683aa4;
+  z-index: 999999; }
+
+.spinner {
+  width: 140px;
+  height: 140px;
+  background-color: #fff;
+  position: absolute;
+  top: 48%;
+  left: 48%;
+  -webkit-animation: sk-rotateplane 2s infinite ease-in-out;
+  animation: sk-rotateplane 2s infinite ease-in-out; }
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    -webkit-transform: perspective(120px); }
+  50% {
+    -webkit-transform: perspective(120px) rotateY(180deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg); } }
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0; }
+  100% {
+    transform: translateX(0);
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+body {
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%); }
+
+.navigation {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  color: #683aa4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; }
+
+.navigation .content {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+.tm-title img {
+  height: 80px;
+  width: 80px; }
+
+.navigation-links ul {
+  margin: 0;
+  padding: 0;
+  display: flex; }
+
+.navigation-links li {
+  list-style: none; }
+
+.navigation-links li a {
+  text-decoration: none;
+  color: #683aa4;
+  padding: 1rem;
+  display: block; }
+
+.navigation-links li a:hover {
+  color: white; }
+
+.navigation-links li:hover {
+  background-color: #683aa4; }
+
+.toggle-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px; }
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: black;
+  border-radius: 10px; }
+
+#smallDevices {
+  display: none; }
+
+@media (max-width: 700px) {
+  .toggle-button {
+    display: flex; }
+  .navigation-links {
+    display: none;
+    width: 100%; }
+  .navigation-links ul {
+    width: 100%;
+    flex-direction: column; }
+  .navigation-links li {
+    text-align: center; }
+  .navigation-links li a {
+    padding: 0.5rem 1rem; }
+  .navigation-links:active {
+    display: flex; }
+  .navigation {
+    flex-direction: column;
+    align-items: flex-start; }
+  .navigation ul {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; }
+  #smallDevices {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; } }
+
+#query_bottom {
+  background-color: #683aa4;
+  color: white; }
+
+#query_bottom:hover {
+  background-color: white;
+  color: #683aa4; }
+
+.carousel-item {
+  height: 100vh;
+  object-fit: contain;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  background-size: cover; }
+
+#intro {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  animation: fadein 1s ease-in-out; }
+
+#intro h1 {
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #683aa4;
+  text-align: center;
+  margin-bottom: 20px; }
+
+#intro p {
+  font-size: 25px;
+  font-weight: 600;
+  color: black;
+  text-align: left; }
+
+#intro button {
+  max-width: 50%;
+  border-radius: 50px !important; }
+
+#intro .col {
+  justify-content: center;
+  display: flex;
+  flex-direction: column; }
+
+#intro .img-col {
+  justify-content: flex-end;
+  margin-top: 100px; }
+
+#intro img {
+  max-width: 130% !important;
+  width: 130%; }
+
+#intro .card {
+  margin-top: 20px;
+  box-shadow: 11px 7px 16px #f9f9f9;
+  border: 1;
+  text-align: center; }
+
+#intro .icon {
+  height: 50px;
+  width: 50px;
+  margin-bottom: 20px; }
+
+#intro i {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px; }
+
+#intro button {
+  background-color: #683aa4;
+  color: white;
+  max-width: 50%;
+  border-radius: 50px !important; }
+
+#intro button:hover {
+  background-color: white;
+  color: #683aa4; }
+
+#about-us {
+  margin-top: 50px; }
+
+#about-us button {
+  background-color: #683aa4;
+  color: white;
+  max-width: 50%;
+  border-radius: 50px !important; }
+
+#about-us button:hover {
+  background-color: white;
+  color: #683aa4; }
+
+section {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+
+section h1 {
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #683aa4;
+  text-align: center;
+  margin-bottom: 20px; }
+
+section p {
+  font-size: 20px;
+  font-weight: 300;
+  color: black;
+  text-align: left; }
+
+section img {
+  max-width: 100% !important;
+  width: 100%; }
+
+#founders img {
+  height: 350px;
+  width: 100%;
+  margin-bottom: 20px; }
+
+.main-content {
+  display: flex; }
+
+.main-content .box {
+  flex-basis: 50%;
+  padding: 10px 20px; }
+
+.box h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+.box .content {
+  margin: 0 0 0 0; }
+
+.left .content p {
+  text-align: justify; }
+
+.left .content .social {
+  margin: 0 0 0 0; }
+
+.left .content .social a {
+  padding: 0 2px; }
+
+.left .content .social a span {
+  height: 40px;
+  width: 40px;
+  background: white;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s; }
+
+.left .content .social a span:hover {
+  background: white; }
+
+.bottom-container {
+  width: 100%;
+  height: 400px;
+  background: white; }
+
+#query-form button {
+  background: #683aa4;
+  max-width: 100%;
+  border-radius: 50px !important; }
+
+#query-form button:hover {
+  background: white;
+  color: #683aa4; }
+
+#logout_user {
+  background: #683aa4;
+  color: white;
+  max-width: 100%; }
+
+#logout_user:hover {
+  background: white;
+  color: #683aa4; }
+
+
+.contact .content {
+  max-width: 800px;
+  text-align: center; }
+
+.contact .content h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #fff; }
+
+.contact .content p {
+  font-weight: 400;
+  color: #fff; }
+
+.contact .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px; }
+
+.contact .container .contactInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column; }
+
+.contact .container .contactInfo .box {
+  position: relative;
+  padding: 20px 0;
+  display: flex; }
+
+.contact .container .contactInfo .box .icon {
+  min-width: 60px;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 22px; }
+
+.contact .container .contactInfo .box .text {
+  display: flex;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #fff;
+  flex-direction: column;
+  font-weight: 300; }
+
+.contact .container .contactInfo .box .text h3, .contact .container .contactInfo .box .text p {
+  font-weight: 500;
+  color: white; }
+
+.contact .contactForm {
+  width: 40%;
+  padding: 40px;
+  background: #fff; }
+
+.contact .contactForm h2 {
+  font-size: 30px;
+  color: #683aa4;
+  font-weight: 500; }
+
+.contact .contactForm .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px; }
+
+.contact .contactForm .inputBox input, .contact .contactForm .inputBox textarea {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none; }
+
+.contact .contactForm .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.3s;
+  color: #666; }
+
+.contact .contactForm .inputBox input:focus ~ span {
+  color: #683aa4;
+  font-size: 12px;
+  transform: translateY(-20px); }
+
+.contact .contactForm .inputBox input:valid ~ span {
+  color: #683aa4;
+  font-size: 12px;
+  transform: translateY(-20px); }
+
+.contact .contactForm .inputBox textarea:focus ~ span {
+  color: #683aa4;
+  font-size: 12px;
+  transform: translateY(-20px); }
+
+.contact .contactForm .inputBox textarea:valid ~ span {
+  color: #683aa4;
+  font-size: 12px;
+  transform: translateY(-20px); }
+
+.contact .contactForm .inputBox input[type="submit"] {
+  width: 100%;
+  background: #683aa4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px; }
+
+.contact .contactForm .inputBox input[type="submit"]:hover {
+  background: #fff;
+  color: #683aa4; }
+
+@media (max-width: 768px) {
+  #intro {
+    padding-top: 100px; }
+  #intro .row {
+    display: flex;
+    flex-direction: column; }
+  #carouselExampleCaptions {
+    margin-bottom: -120px; }
+  #about-us .row {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column; }
+  .contact {
+    padding: 50px; }
+  .container {
+    flex-direction: column;
+    overflow: hidden; }
+  .container .contactInfo {
+    margin-bottom: 40px;
+    width: 100%; }
+  .container .contactForm {
+    width: 100%; }
+  #foundersImages {
+    flex-direction: column; } }
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</head>
+<body>
+
+        <nav class="navigation">
+            <div class="content">
+               <div class="tm-title"><img src="/images/NB.svg" alt="logo"></div>      
+               </a>
+               <div class="navigation-links">
+                  <ul>
+                     <li><a href="#">Home</a></li>
+                     <li><a href="#need">Features</a></li>
+                     <li><a href="#about-us">Need</a></li>
+                     <%if(locals.user){%>
+                        <li>
+                           <a href="users/mailservices" id="login-button"><%=user.name%>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="users/SignOut" id="login-button">Logout
+                           </a>
+                        </li>
+                        <%}else{%>
+                           <li>
+                               <a href="users/signIn" id="login-button">Login
+                               </a>
+                            </li>
+                         
+                            <li>
+                               <a href="users/signUp" id="signup-button">Sign Up
+                               </a>
+                            </li>
+                        <%}%>
+                  </ul>
+               </div>
+               <div class="navigation-links" id="smallDevices">
+                  <ul>   
+                     <%if(locals.user){%>
+                        <li>
+                           <a href="users/mailservices" id="login-button"><%=user.name%>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="users/SignOut" id="login-button">Logout
+                           </a>
+                        </li>
+                        <%}else{%>
+                           <li>
+                               <a href="users/signIn" id="login-button">Login
+                               </a>
+                            </li>
+                         
+                            <li>
+                               <a href="users/signUp" id="signup-button">Sign Up
+                               </a>
+                            </li>
+                        <%}%>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <!-- Top Navbar ends-->
+   
+
+      <section id="intro">
+         <div class="container">
+            <div class="row">
+               <div class="col" id="#">
+                  <h1>Noob Ninjas</h1>
+                  <p>Modern email applications are getting better and better everyday. But can you send a recurring email using the best one out of them?
+                  </p>
+                  <a href="users/mailservices" class="btn"> Learn more</a>
+               </div>
+               <div class="col img-col">
+                  <img src="/images/Homesvg.svg" alt="main-image" class="image-fluid"> 
+               </div>
+            </div>
+            <div class="row cards" id="need">
+               <div class="col-md-4 d-flex justify-content-center">
+                  <div class="card" style="width: 18rem;">
+                     <div class="card-body">
+                        <img src="/images/online_image.png" alt="advantage 1" class="icon" />
+                       <h5 class="card-title">Step 1</h5>
+                       <p class="card-text">Sign Up and Log In</p>
+                     </div>
+                   </div>
+               </div>
+              
+               <div class="col-md-4 d-flex justify-content-center">
+                  <div class="card" style="width: 18rem;">
+                     <div class="card-body">
+                        <img src="/images/meeting_logo.png" alt="advantage 2" class="icon" />
+                       <h5 class="card-title">Step 2</h5>
+                       <p class="card-text">Select a time interval from a variety of options for sending recurring emails</p>
+                     </div>
+                   </div>
+               </div>
+
+               <div class="col-md-4 d-flex justify-content-center">
+                  <div class="card" style="width: 18rem;">
+                     <div class="card-body">
+                        <img src="/images/discussion_logo.png" alt="advantage 3" class="icon" />
+                       <h5 class="card-title">Step 3</h5>
+                       <p class="card-text">Compose the email on our platform with simple and minimalistic UI                     </div>
+                   </div>
+               </div>
+
+            </div>
+         </div>
+      </section>
+
+      <!-- Intro Section ends -->
+
+      <!-- Carousel begins -->
+
+       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+         <ol class="carousel-indicators">
+           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+           <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+         
+         </ol>
+         <div class="carousel-inner">
+          
+           <div class="carousel-item active" data-interval="10000">
+             <img src="/images/UI_1.jpeg" class="d-block w-100" alt="Snapshot 1" />
+             <div class="carousel-caption d-none d-md-block" style="color: #000;">
+               <i class="fas fa-chalkboard-teacher"></i>
+               <h5>Nothing fancy</h5>
+               <p>Say goodbye to sophisticated user interfaces. We offer a clean and minimalistic UI experience to the users</p>
+             </div>
+           </div>
+           <div class="carousel-item" data-interval="10000">
+             <img src="/images/UI_2.jpeg" class="d-block w-100" alt="Snapshot 2" />
+             <div class="carousel-caption d-none d-md-block">
+               <h5 style="color: black;">Send Recurring emails</h5>
+               <p style="color: black;">Signup, login and you're good to go. Say goodbye to writing mails repeteadly.</p>
+             </div>
+           </div>
+           <div class="carousel-item" data-interval="10000">
+             <img src="/images/UI_3.jpeg" class="d-block w-100" alt="Snapshot 3" />
+             <div class="carousel-caption d-none d-md-block">
+               <h5 style="color: black;">Simple but incomplete?</h5>
+               <p style="color: black;">No! Letting you down would be the last thing we would want. We have included all the necessary features in our application</p>
+             </div>
+           </div>
+         </div>
+         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only" style="color: black;">Next</span>
+         </a>
+       </div>
+
+      <!-- Carousel ends -->
+
+
+      <!-- Why Thunder Meet section begins -->
+      
+      <section id="about-us">
+         <div class="container">
+            <div class="row align-items-center">
+               <div class="col">
+                  <img src="/images/main_info.jpg" alt="About Us" class="img-fluid" />
+               </div>
+               <div class="col">
+                  <h1>Why Noob Ninjas</h1>
+                  <p>
+                     We are not just another email application. We at Noob Ninjas ensure that you get the best out of our application and that too, free of cost! 
+                     From all the basic options like cc, history and bin, we got exclusive options like sending recurring emails.
+                  <br>Don't worry! Noob Ninjas got everything covered.
+                  </p>
+
+                  <a href="users/signUp"><button class="btn btn-lg">Join Us</button></a>
+                  
+               </div>
+            </div>
+         </div>
+
+      </section>
+   
+
+      <script>
+         $(document).ready(function() {
+         //Preloader
+         preloaderFadeOutTime = 4;
+         function hidePreloader() {
+         var preloader = $('.spinner-wrapper');
+         preloader.fadeOut(preloaderFadeOutTime);
+         }
+         hidePreloader();
+         });
+      </script>
+
+
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity
+      ="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+      </script>
+
+      <script src="js/jquery-3.5.1.min.js"></script>
+
+      <script src="https://kit.fontawesome.com/26d4a64054.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

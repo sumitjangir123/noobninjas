@@ -1,0 +1,72 @@
+<link rel="stylesheet" type="text/css" href="/css/register.css">
+
+<%if(locals.user){%>
+<div class="container">
+   <div class="image">
+      <img src="/images/forms2.svg" alt="formjpeg">
+   </div>
+   <div class="form">
+      <h3>Let's get to know you <%=locals.user.name%></h3>
+      <form id="details" method="POST" action="/users/create_user" autocomplete="false">
+         <div class="row">
+            <label for="Contact Number">Contact Number</label>
+            <input type="text" placeholder="Contact Number" name="contact" min="1000000000" max="9999999999" required>
+         </div>
+         <div class="row">
+            <label for="Organisation">Your organisation</label>
+            <input type="text" placeholder="organization" value="<%=locals.user.org%>" name="org" disabled required>
+         </div>
+         <div class="row">
+            <label for="Access type">Access type</label>
+            <br>
+            <label style="display: inline;">
+               <input type="radio" name="same" value="student" checked> &nbsp;Student
+            </label>
+
+            &nbsp;&nbsp;
+            <label style="display: inline;">
+               <input type="radio" name="same" value="teacher"> &nbsp;Teacher
+            </label>
+         </div>
+         <div class="row">
+            <label for="Email">Email address</label>
+            <input type="email" placeholder="Email-address" value="<%=locals.user.email%>" disabled required>
+         </div>
+         <div class="row">
+            <label for="Password">Password</label>
+            <input type="password" name="password" placeholder="choose a password" required>
+         </div>
+         <div class="row">
+            <label for="Confirm Password">Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="confirm your password" required>
+         </div>
+         <div class="row">
+            <label for="AccessToken">If you are a teacher</label>
+            <input type="text" placeholder="Enter Access Token ex - a2bkYRxwdsL" name="AccessToken">
+         </div>
+         <div class="row">
+            <label for="Roll No / ID">ID</label>
+            <input type="text" placeholder="Roll Number / Id" value="" name="roll">
+         </div>
+         <div class="row">
+            <label for="Year">Year</label>
+            <input type="number" placeholder="Year ex - 1,2,3,4" name="year">
+         </div>
+         <div class="row">
+            <label for="Branch">Branch</label>
+            <select name="branch">
+               <option>CSE</option>
+               <option>ECE</option>
+               <option>MECH</option>
+               <option>CIVIL</option>
+               <option>CHEMICAL</option>
+               <option>OTHER</option>
+            </select>
+         </div>
+         <div class="row">
+            <button type="submit" id="info_submit" class="btn">Submit</button>
+         </div>
+      </form>
+   </div>
+</div>
+<%}%>

@@ -1,0 +1,71 @@
+
+<link rel="stylesheet" type="text/css" href="/css/signup.css">
+<body>
+      <div class="container">
+         <div class="img">
+            <img src="/images/forms.svg">
+         </div>
+         <div class="login-content">
+            <form method="POST" action="/users/create_user" autocomplete="off">
+               <img src="/images/NB.png">
+               <h2 class="title" style="color: #683aa4;">Register</h2>
+               <br>
+                     <div class="input-div name">
+                        <div class="i">
+                              <!-- <i class="fas fa-user"></i> -->
+                              <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                 <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                              </svg>
+                        </div>
+                        <div class="div">
+                              <h5>Name</h5>
+                              <input type="text" class="input" name="name">
+                        </div>
+                     </div>
+                    <div class="input-div one">
+                       <div class="i">
+                             <!-- <i class="fas fa-user"></i> -->
+                             <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                       </div>
+                       <div class="div">
+                             <h5>Email Address</h5>
+                             <input type="text" class="input" name="email">
+                       </div>
+                    </div>
+                    <div class="input-div pass" style="margin-top: 30px;">
+                       <div class="i"> 
+                           <!-- <i class="fas fa-lock"></i> -->
+                           <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                              <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                            </svg>
+                       </div>
+                       <div class="div">
+                           <h5>Password</h5>
+                           <input type="password" class="input" name="password">
+                     </div>
+                  </div>
+                  <div class="input-div pass" style="margin-top: 30px;">
+                     <div class="i"> 
+                         <!-- <i class="fas fa-lock"></i> -->
+                         <svg width="1.4em" height="1.4em" viewBox="0 0 16 16" class="bi bi-lock-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>
+                            <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                          </svg>
+                     </div>
+                     <div class="div">
+                         <h5>Confirm Password</h5>
+                         <input type="password" class="input" name="repassword">
+                   </div>
+                  </div>
+                  <button type="submit" class="btn">signup</button>
+                  <hr>
+               <a href="auth/google" style="text-align: center;" class="btn">Google</a>
+               </form>
+         </div>
+      </div>
+
+    <script type="text/javascript" src="/js/signin.js"></script>
+</body>
