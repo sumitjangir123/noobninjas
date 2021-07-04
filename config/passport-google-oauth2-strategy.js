@@ -14,9 +14,9 @@ const { json } = require('express');
 
 //tell passport to use a new strategy for google login 
 passport.use(new googleStrategy({
-  clientID: "411434175772-r8eto52np9n9ltjl043rjvqjv8gjefrg.apps.googleusercontent.com",
-  clientSecret: "q82ys56S8Yo7mgBQYCk3XvUQ",
-  callbackURL: "http://localhost:8000/users/auth/google/callback"
+  clientID: "*********",
+  clientSecret: "********",
+  callbackURL: "https://noobninjas.ml/users/auth/google/callback"
 },
   function (accessToken, requestParams, profile, cb) {
     //find a user 
