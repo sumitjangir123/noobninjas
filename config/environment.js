@@ -23,7 +23,7 @@ const development= {
         secure: false, // true for 465, false for other ports
         auth: {
           user: 'thethunderbirdus@gmail.com',
-          pass: 'thunderbird1234'
+          pass: '********'
         }
     },
     google_client_id: "922852696533-qrr4lrcdb3uj5sjdjcqi1g90fc5mpsoq.apps.googleusercontent.com",
